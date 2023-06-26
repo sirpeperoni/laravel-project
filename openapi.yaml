@@ -1,0 +1,119 @@
+openapi: 3.0.0
+info:
+  title: ПРОК
+  version: 0.0.1
+servers:
+  - url: http://localhost/api/v1/
+    description: Dev server
+
+paths:
+  /post:
+    post:
+      summary: Создание новой работы
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workName:
+                  type: string
+                  description: Наименование работы
+                workId:
+                  type: string
+                  description: Идентификатор работы
+      responses:
+        '200':
+          description: ОК
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Признак успешности запроса
+                  data:
+                    type: object
+                    description: Данные ответа
+                    properties:
+                      requestId:
+                        type: string
+                        description: Идентификатор запроса
+        '100':
+          description: '100'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Error"
+
+
+  /get:
+    get:
+      summary: Проверка выполнения задания
+      parameters:
+        - in: query
+          name: requestId
+          schema:
+            type: string
+            description: Идентификатор запроса
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Признак успешности запроса
+                  data:
+                    type: object
+                    description: Признак успешности задания
+                    properties:
+                      status:
+                        type: string
+                        description: Статус работы
+        '100':
+          description: '100'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Error"
+
+
+
+
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        success:
+          type: boolean
+          example: false
+        data:
+          type: object
+          description: Данные ответа
+          properties:
+            code:
+              description: Код ошибки
+              type: string
+              example: 100
+            message:
+              description: Описание ошибки
+              type: string
+              example: Переданы неверные данные
+
+
+
