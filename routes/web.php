@@ -24,9 +24,11 @@ use App\Http\Controllers\WorkController;
 
 
     Route::get('works/check', [WorkController::class, 'check'])->name('works.check');
-//    Route::post('works/check', [WorkController::class, 'checkId'])->name('works.check.id');
+    Route::post('works/check', [WorkController::class, 'checkId'])->name('works.check.id');
 
-    Route::get('works/check/{work}', [WorkController::class, 'startWork'])->name('works.startWork');
-    Route::get('works/{work}', [WorkController::class, 'startWork'])->name('works.startWork');
+    Route::put('works/{work}', [WorkController::class, 'startWork'])->name('works.startWork');
+    Route::get('works/{work}/start', [WorkController::class, 'edit'])->name('works.startWorkPage');
 
+    Route::get('works/{work}', [WorkController::class, 'cancel'])->name('works.cancel');
+    //Route::get('works/start/{work}', [WorkController::class, 'startWork'])->name('works.startWork');
 

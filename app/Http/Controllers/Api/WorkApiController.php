@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\WorkResource;
 use App\Models\Work;
+use App\Models\Cancel;
 class WorkApiController extends Controller
 {
     public function store(Request $request)
@@ -21,7 +22,7 @@ class WorkApiController extends Controller
                 'status' => 'Wait',
                 'id' => $validated['id'],
                 'request_id' => $random + now()->format('s') * now()->format('i'),
-                'success_time' => now()->addYear(10),
+                'cancel_id' => 0,
             ]);
             $work->save();
 

@@ -14,6 +14,7 @@ class Work extends Model
         'work_name',
         'status',
         'request_id',
+        'cancel_id',
     ];
 
 

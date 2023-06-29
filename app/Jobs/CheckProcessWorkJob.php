@@ -30,4 +30,5 @@ class CheckProcessWorkJob implements ShouldQueue
     {
         Work::where('id', $this->work->id)->update(['status' => 'Process']);
     }
+
 }

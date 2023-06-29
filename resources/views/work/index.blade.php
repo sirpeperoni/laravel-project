@@ -34,15 +34,15 @@
                                                         <x-button type="submit" color="primary" id_work="{{$work?->id}}">Удалить</x-button>
                                                     </x-form>
                                                     @if($work->status == "Wait")
-                                                        <x-form action="{{ route('works.startWork', $work->id)}}">
+                                                        <x-form action="{{ route('works.startWorkPage', $work->id)}}">
                                                             <x-button type="submit" color="primary" id_work="{{$work?->id}}">Запуск</x-button>
                                                         </x-form>
                                                     @elseif($work->status == "Process")
-                                                        <x-form action="{{ route('works.startWork', $work->id)}}">
-                                                            <x-button type="button" color="secondary" id_work="{{$work?->id}} ">Процесс</x-button>
+                                                        <x-form action="{{ route('works.cancel', $work->id)}}">
+                                                            <x-button type="submit" color="danger" id_work="{{$work?->id}} ">Отмена</x-button>
                                                         </x-form>
                                                     @else
-                                                        <x-form action="{{ route('works.startWork', $work->id)}}">
+                                                        <x-form>
                                                             <x-button type="button" color="success" id_work="{{$work?->id}} ">Done</x-button>
                                                         </x-form>
                                                     @endif
